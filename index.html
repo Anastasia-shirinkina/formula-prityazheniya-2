@@ -413,25 +413,33 @@ const opening=`
 ${getOpening(c,e,i)}.
 `;
 
-const paragraph2=
-character.intro+' '+character.attraction;
+const paragraph2=`
+${character.intro}
+`;
 
-const paragraph3=
-energy.contact+' '+energy.reaction;
+const paragraph3=`
+${character.attraction}
+`;
 
-const paragraph4=
-interest.interest+' '+interest.signal;
+const paragraph4=`
+${energy.contact} ${energy.reaction}
+`;
 
-const paragraph5=
-energy.attraction+' '+interest.attraction;
+const paragraph5=`
+${interest.interest} ${interest.signal}
+`;
 
-const paragraph6=
-character.strength+' '+character.difficulty;
+const paragraph6=`
+${energy.attraction} ${interest.attraction}
+`;
 
 const paragraph7=`
+${character.strength} ${character.difficulty} ${interest.difficulty}
+`;
+
+const paragraph8=`
 <strong>
-Ваша формула —
-${getFormula(c,e,i)}.
+Ваша формула — ${getFormula(c,e,i)}.
 </strong>
 `;
 
@@ -454,6 +462,8 @@ return`
 <p>${paragraph6}</p>
 
 <p>${paragraph7}</p>
+
+<p>${paragraph8}</p>
 
 ${formulaCTA}
 
