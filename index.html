@@ -302,6 +302,10 @@ function showCalculator() {
 }
 
 
+/* =========================
+   JSONP
+========================= */
+
 function jsonp(url, callback) {
 
   const callbackName =
@@ -310,7 +314,18 @@ function jsonp(url, callback) {
     '_' +
     Math.floor(Math.random() * 100000);
 
+  const script =
+    document.createElement('script');
+
+  let finished = false;
+
   window[callbackName] = function(data) {
+
+    if (finished) {
+      return;
+    }
+
+    finished = true;
 
     try {
       callback(data);
@@ -326,15 +341,18 @@ function jsonp(url, callback) {
 
   };
 
-  const script =
-    document.createElement('script');
-
   script.src =
     url +
     '&callback=' +
     encodeURIComponent(callbackName);
 
   script.onerror = function() {
+
+    if (finished) {
+      return;
+    }
+
+    finished = true;
 
     delete window[callbackName];
 
@@ -348,9 +366,14 @@ function jsonp(url, callback) {
 
   };
 
-  document.body.appendChild(script);
+  document.head.appendChild(script);
+
 }
 
+
+/* =========================
+   ПРОВЕРКА ДОСТУПА
+========================= */
 
 function checkAccess() {
 
@@ -404,6 +427,10 @@ function checkAccess() {
 
 }
 
+
+/* =========================
+   ПРИВЯЗКА ДАТЫ
+========================= */
 
 function bindDateAndCalculate(date) {
 
